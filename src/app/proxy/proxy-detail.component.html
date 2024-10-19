@@ -1,0 +1,27 @@
+<ActionBar [title]="proxy?.address + ':' + proxy?.port">
+  <NavigationButton text="Back" android.systemIcon="ic_menu_back"></NavigationButton>
+</ActionBar>
+
+<ScrollView>
+  <StackLayout class="p-4">
+    <Label text="Proxy Details" class="h2 mb-4"></Label>
+    <GridLayout rows="auto, auto, auto, auto, auto" columns="*, *" class="mb-4">
+      <Label text="Status:" class="font-bold" row="0" col="0"></Label>
+      <Label [text]="proxy?.status" [class.text-green-500]="proxy?.status === 'active'" [class.text-red-500]="proxy?.status === 'inactive'" row="0" col="1"></Label>
+      
+      <Label text="Response Time:" class="font-bold" row="1" col="0"></Label>
+      <Label [text]="proxy?.responseTime + 'ms'" row="1" col="1"></Label>
+      
+      <Label text="Uptime:" class="font-bold" row="2" col="0"></Label>
+      <Label [text]="proxy?.uptime + '%'" row="2" col="1"></Label>
+      
+      <Label text="Success Rate:" class="font-bold" row="3" col="0"></Label>
+      <Label [text]="proxy?.successRate + '%'" row="3" col="1"></Label>
+    </GridLayout>
+    
+    <Button text="Toggle Status" (tap)="onToggleStatus()" class="btn btn-primary mb-2"></Button>
+    <Button text="Test Connection" (tap)="onTestConnection()" class="btn btn-outline mb-2"></Button>
+    <Button text="Select as Best Proxy" (tap)="onSelectBestProxy()" class="btn btn-success mb-2"></Button>
+    <Button text="Rotate Proxy" (tap)="onRotateProxy()" class="btn btn-info"></Button>
+  </StackLayout>
+</ScrollView>

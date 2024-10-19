@@ -1,0 +1,16 @@
+<ActionBar title="AI Proxy Manager"></ActionBar>
+
+<GridLayout rows="auto, *" class="p-4">
+  <Button text="Add New Proxy" (tap)="onAddProxy()" class="btn btn-primary mb-4" row="0"></Button>
+  <ListView [items]="proxies$ | async" row="1">
+    <ng-template let-proxy="item">
+      <GridLayout columns="*, auto" class="p-2" [nsRouterLink]="['/proxy', proxy.id]">
+        <StackLayout col="0">
+          <Label [text]="proxy.address + ':' + proxy.port" class="font-bold"></Label>
+          <Label [text]="'Response Time: ' + proxy.responseTime + 'ms'" class="text-sm"></Label>
+        </StackLayout>
+        <Label [text]="proxy.status" [class.text-green-500]="proxy.status === 'active'" [class.text-red-500]="proxy.status === 'inactive'" col="1" class="text-right"></Label>
+      </GridLayout>
+    </ng-template>
+  </ListView>
+</GridLayout>
